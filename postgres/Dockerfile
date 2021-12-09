@@ -1,1 +1,2 @@
 FROM postgres:12.9
+ENV POSTGRES_PASSWORD="abcd1234"
