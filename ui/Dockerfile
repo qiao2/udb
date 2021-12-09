@@ -1,2 +1,2 @@
 FROM swaggerapi/swagger-ui
-ADD ./api.json /usr/share/nginx/html/doc
+ADD ./api.json /usr/share/nginx/html/doc/
