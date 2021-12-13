@@ -5,7 +5,7 @@
     "title": "UJTL Service",
     "description": "API for importing and editing UJTL Task Report"
   },
-  "host": "udb-udb.apps-crc.testing",
+  "host": "UDB_SERVICE_HOST",
   "basePath": "/udb/v1",
   "tags": [
     {
