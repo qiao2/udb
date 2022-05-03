@@ -1,0 +1,109 @@
+db:
+  replicaCount: 1
+  deployment:
+    name: udbapp-db
+  imageStream:
+    namespace: openshift
+    name: postgresql
+    tag: 12-el8
+  configMap:
+    db: udb
+    username: jtims
+    password: password
+  service:
+    port: 5432
+#  resources:
+#    deploy:
+#      requests:
+#        memory: 500Mi
+#        cpu: 500m
+#      limits:
+#        memory: 500Mi
+#        cpu: 500m
+#    pod:
+#      requests:
+#        memory: 500Mi
+#        cpu: 500m
+#      limits:
+#        memory: 500Mi
+#        cpu: 500m
+  
+api:
+  replicaCount: 1
+  deployment:
+    name: udbapp-api
+  db: 
+    url: jdbc:postgresql://udbapp-db-service:5432/udb
+    configMap: udbapp-db-configmap
+  buildConfig:
+    uri: https://bitbucket.di2e.net/scm/jsj7jtimsf/ujtl-db.git
+    ref: helm
+    contextDir: /helm/api
+    sourceSecret: di2e
+  imageStream:
+    namespace: udb
+    name: udb-helm
+    tag: latest
+  service:
+    port: 8080
+#  resources:
+#    build:
+#      requests:
+#        memory: 500Mi
+#        cpu: 500m
+#      limits:
+#        memory: 500Mi
+#        cpu: 500m
+#    deploy:
+#      requests:
+#        memory: 500Mi
+#        cpu: 500m
+#      limits:
+#        memory: 500Mi
+#        cpu: 500m
+#    pod:
+#      requests:
+#        memory: 500Mi
+#        cpu: 500m
+#      limits:
+#        memory: 500Mi
+#        cpu: 500m
+
+ui:
+  replicaCount: 1
+  deployment:
+    name: udbapp-ui
+  udbServiceHost: udbapp-api-route-udb.apps-crc.testing
+  buildConfig:
+    uri: https://bitbucket.di2e.net/scm/jsj7jtimsf/ujtl-db.git
+    ref: helm
+    contextDir: /helm/ui
+    sourceSecret: di2e
+  imageStream:
+    namespace: udb
+    name: swagger-ui-helm
+    tag: latest
+  service:
+    port: 8080
+#  resources:
+#    build:
+#      requests:
+#        memory: 500Mi
+#        cpu: 500m
+#      limits:
+#        memory: 500Mi
+#        cpu: 500m
+#    deploy:
+#      requests:
+#        memory: 500Mi
+#        cpu: 500m
+#      limits:
+#        memory: 500Mi
+#        cpu: 500m
+#    pod:
+#      requests:
+#        memory: 500Mi
+#        cpu: 500m
+#      limits:
+#        memory: 500Mi
+#        cpu: 500m

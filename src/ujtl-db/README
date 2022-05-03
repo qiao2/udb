@@ -1,0 +1,3 @@
+UJTL DB Service
+
+To build: mvn install -DskipTests

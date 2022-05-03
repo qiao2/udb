@@ -1,0 +1,8 @@
+Before deployment, the pull secrets for git/bitbucket repos must be added to openshift.
+
+To configure deployment, modify ./udb-app/values.yaml 
+- make sure "sourceSecret" matches the name of the secret(s) created in previous step
+- otherwise, this step is optional; deployment should work with default values
+
+To deploy, run:
+helm install <deployment name> ./udb-app
