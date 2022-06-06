@@ -25,7 +25,7 @@ api:
     contextDir: /api
   imageStream:
     namespace: pipeline
-    name: udb-helm
+    name: pipelines-udb-api
     tag: latest
   service:
     port: 8080
